@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="viewModel" type="com.example.myapplication.viewmodels.CatViewModel" />
+        <variable name="mainViewModel" type="com.example.myapplication.viewmodels.FavoritesCatListViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:onClick="@{(view) -> mainViewModel.onClickCat(viewModel)}">
+
+        <ImageView
+            android:id="@+id/cat_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/cat_name"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerCrop"
+            app:imageBitmapUrl="@{viewModel.imageUrl}"
+            />
+
+        <TextView
+            android:id="@+id/cat_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{viewModel.name}"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

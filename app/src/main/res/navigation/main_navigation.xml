@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_navigarion"
+    app:startDestination="@id/catFragment">
+
+    <fragment
+        android:id="@+id/carFavoriteFragment"
+        android:name="com.example.myapplication.views.CarFavoriteFragment"
+        android:label="@string/favorite" />
+    <fragment
+        android:id="@+id/catFragment"
+        android:name="com.example.myapplication.views.CatFragment"
+        android:label="@string/home">
+        <action
+            android:id="@+id/action_catFragment_to_saveCatBreed"
+            app:destination="@id/saveCatBreed">
+            <argument
+                android:name="catViewModel"
+                app:argType="com.example.myapplication.viewmodels.CatViewModel" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/saveCatBreed"
+        android:name="com.example.myapplication.views.SaveCatBreedFragment"
+        android:label="SaveCatBreed">
+        <argument
+            android:name="catViewModel"
+            app:argType="com.example.myapplication.viewmodels.CatViewModel" />
+    </fragment>
+</navigation>

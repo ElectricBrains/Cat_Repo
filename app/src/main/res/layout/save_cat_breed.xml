@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="viewModel" type="com.example.myapplication.viewmodels.SaveCatBreedViewModel" />
+        <variable name="catModel" type="com.example.myapplication.viewmodels.CatViewModel" />
+
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/cat_avatar"
+            android:transitionName="image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/breed"
+            app:layout_constraintDimensionRatio="1:1"
+            app:imageBitmapUrl="@{catModel.imageUrl}"
+            android:scaleType="centerCrop"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/breed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/cat_avatar"
+            app:layout_constraintBottom_toTopOf="@+id/textButton"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_margin="16dp"
+            android:hint="@string/breed">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.breed}"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/textButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/save"
+            app:layout_constraintTop_toBottomOf="@+id/breed"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:onClick="@{(view) -> viewModel.onSave(catModel)}"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
